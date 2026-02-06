@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Live Screensaver</title>
+<style>
+  /* Force the body to take up the full screen and remove white edges */
+  body, html { 
+    margin: 0; 
+    padding: 0; 
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden; 
+    background-color: #000; 
+  }
+  
+  /* Make the video wrapper fill the viewport */
+  .video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Force iframe to cover everything */
+  iframe { 
+    width: 100vw; 
+    height: 100vh; 
+    border: none; 
+    pointer-events: none; /* Disables clicking so the mouse doesn't get stuck */
+  }
+</style>
+</head>
+<body>
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/Mm_zVDDUeNA?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=Mm_zVDDUeNA&iv_load_policy=3&fs=0" 
+      allow="autoplay; encrypted-media" 
+      allowfullscreen 
+      referrerpolicy="strict-origin-when-cross-origin"
+    ></iframe>
+  </div>
+</body>
+</html>
