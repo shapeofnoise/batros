@@ -16,10 +16,8 @@
   /* The Grid Container */
   .grid-container {
     display: grid;
-    /* Create 3 columns of equal width */
-    grid-template-columns: 1fr 1fr 1fr;
-    /* Create 3 rows of equal height */
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 Columns */
+    grid-template-rows: 1fr 1fr 1fr;    /* 3 Rows */
     width: 100vw;
     height: 100vh;
   }
@@ -29,52 +27,51 @@
     width: 100%; 
     height: 100%; 
     border: none; 
-    pointer-events: none; /* Disables clicking */
+    pointer-events: none; /* Disables clicking so screensaver doesn't get stuck */
   }
 </style>
 </head>
 <body>
 
-  <div class="grid-container">
-    <!-- Row 1 -->
-    <!-- 1. Albatross -->
-    <iframe src="https://www.youtube.com/embed/Mm_zVDDUeNA?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=Mm_zVDDUeNA&iv_load_policy=3" 
-            allow="autoplay; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-            
-    <!-- 2. Shark Cam -->
-    <iframe src="https://www.youtube.com/embed/BfGL7A2YgUY?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=BfGL7A2YgUY&iv_load_policy=3" 
-            allow="autoplay; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  <!-- The container is empty now; JavaScript will fill it -->
+  <div class="grid-container" id="videoGrid"></div>
 
-    <!-- 3. Eagles (орлв) -->
-    <iframe src="https://www.youtube.com/embed/hQrJv_Dt4tY?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=hQrJv_Dt4tY&iv_load_policy=3" 
-            allow="autoplay; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+<script>
+  // --- CONFIGURATION: EDIT YOUR VIDEO IDS HERE ---
+  // Just paste the 11-character ID inside the quotes.
+  // The order here determines the order on screen (Left->Right, Top->Bottom).
+  const videoIds = [
+    "Mm_zVDDUeNA",  // 1. Батрос
+    "BfGL7A2YgUY",  // 2. Какапо
+    "hQrJv_Dt4tY",  // 3. Рлы
+    "ydYDqZQpim8",  // 4. Пустыня
+    "-m_nQT62B4Y",  // 5. Кэт
+    "QhxCVRJrVHs",  // 6. Кормушка в лесу
+    "x10vL6_47Dw",  // 7. Пчиц
+    "WtoxxHADnGk",  // 8. Тропик пчиц
+    "vq-hK5iU7Uw"   // 9. Пингинг
+  ];
 
-    <!-- Row 2 -->
-    <!-- 4. Seals (печати) -->
-    <iframe src="https://www.youtube.com/embed/JqjHlNFz7PU?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=JqjHlNFz7PU&iv_load_policy=3" 
-            allow="autoplay; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  // --- LOGIC: DO NOT EDIT BELOW THIS LINE ---
+  const container = document.getElementById('videoGrid');
 
-    <!-- 5. Kittens (котики) -->
-    <iframe src="https://www.youtube.com/embed/-m_nQT62B4Y?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=-m_nQT62B4Y&iv_load_policy=3" 
-            allow="autoplay; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  videoIds.forEach(id => {
+    // Create the iframe element
+    const iframe = document.createElement('iframe');
 
-    <!-- 6. Pandas (панды) -->
-    <iframe src="https://www.youtube.com/embed/3szkFHfr6sA?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=3szkFHfr6sA&iv_load_policy=3" 
-            allow="autoplay; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    // Construct the URL dynamically
+    // We insert the 'id' variable twice: once for the video, once for the playlist loop
+    iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=${id}&iv_load_policy=3`;
+    
+    // Set required security and autoplay attributes
+    iframe.allow = "autoplay; encrypted-media";
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.allowFullscreen = true;
 
-    <!-- Row 3 -->
-    <!-- 7. Birds (пчиц) -->
-    <iframe src="https://www.youtube.com/embed/x10vL6_47Dw?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=x10vL6_47Dw&iv_load_policy=3" 
-            allow="autoplay; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-
-    <!-- 8. Tropical Birds (тропич птиц) -->
-    <iframe src="https://www.youtube.com/embed/WtoxxHADnGk?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=WtoxxHADnGk&iv_load_policy=3" 
-            allow="autoplay; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-
-    <!-- 9. Bullfinches (булф) -->
-    <iframe src="https://www.youtube.com/embed/5e4lsEe4Vew?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=5e4lsEe4Vew&iv_load_policy=3" 
-            allow="autoplay; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-  </div>
+    // Add it to the grid
+    container.appendChild(iframe);
+  });
+</script>
 
 </body>
 </html>
