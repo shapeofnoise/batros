@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>3x3 Live Screensaver</title>
+<title>4x4 Live Screensaver</title>
 <style>
   /* Basic Reset */
   body, html { 
@@ -16,10 +16,10 @@
   /* The Grid Container */
   .grid-container {
     display: grid;
-    /* Create 3 columns of equal width */
-    grid-template-columns: 1fr 1fr 1fr;
-    /* Create 3 rows of equal height */
-    grid-template-rows: 1fr 1fr 1fr;
+    /* UPDATED: Create 4 columns of equal width */
+    grid-template-columns: repeat(4, 1fr);
+    /* UPDATED: Create 4 rows of equal height */
+    grid-template-rows: repeat(4, 1fr);
     width: 100vw;
     height: 100vh;
   }
@@ -40,46 +40,46 @@
 
 <script>
   // --- CONFIGURATION ---
-  // 1. If ID starts with "UC" -> It plays the CHANNEL'S current live stream.
-  // 2. If ID is normal (11 chars) -> It plays that SPECIFIC video on loop.
-  
+  // We now need 16 IDs for a full 4x4 grid.
   const videoIds = [
-    "Mm_zVDDUeNA",  // 1. Батрос
-    "BfGL7A2YgUY",  // 2. Какапо
-    "UCVdpXl0rxsYEst6PGS5fCIA",  // 3. Nest
-    "CLDRylX38mw",  // 4. Кот
-    "-m_nQT62B4Y",  // 5. Кэт
-    "s0liN8AzykQ",  // 6. stonks
-    "TA6vV8bkhc8",  // 7. рлы 2
-    "Lo1l2aD-CCo",  // 8. Орал
-    "OAH9wuZRJoY"   // 9. Blue balls
+    "Mm_zVDDUeNA",  // 1
+    "BfGL7A2YgUY",  // 2
+    "UCVdpXl0rxsYEst6PGS5fCIA",  // 3 (Channel)
+    "CLDRylX38mw",  // 4
+    "-m_nQT62B4Y",  // 5
+    "s0liN8AzykQ",  // 6
+    "TA6vV8bkhc8",  // 7
+    "Lo1l2aD-CCo",  // 8
+    "OAH9wuZRJoY",  // 9
+    "OAH9wuZRJoY",  // 10 (Repeat/Placeholder)
+    "OAH9wuZRJoY",  // 11 (Repeat/Placeholder)
+    "OAH9wuZRJoY",  // 12 (Repeat/Placeholder)
+    "OAH9wuZRJoY",  // 13 (Repeat/Placeholder)
+    "OAH9wuZRJoY",  // 14 (Repeat/Placeholder)
+    "OAH9wuZRJoY",  // 15 (Repeat/Placeholder)
+    "OAH9wuZRJoY"   // 16 (Repeat/Placeholder)
   ];
 
-  // --- LOGIC: DO NOT EDIT BELOW THIS LINE ---
+  // --- LOGIC ---
   const container = document.getElementById('videoGrid');
 
   videoIds.forEach(id => {
     const iframe = document.createElement('iframe');
     let src = "";
 
-    // CHECK: Is this a Channel ID (starts with UC) or a Video ID?
     if (id.startsWith("UC")) {
-        // IT IS A CHANNEL: Use the special "Live Stream" embed URL
-        // This will automatically find the current live video for this channel.
-        src = `https://www.youtube.com/embed/live_stream?channel=${id}&autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1`;
+        // CHANNEL LIVE STREAM
+        src = `https://www.youtube.com/embed/live_stream?channel=${id}&autoplay=1&mute=1&rel=0`;
     } else {
-        // IT IS A VIDEO: Use the standard embed URL with the playlist loop hack
-        // We insert the 'id' variable twice: once for the video, once for the playlist loop
-        src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=${id}&iv_load_policy=3`;
+        // SPECIFIC VIDEO LOOP
+        src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&rel=0`;
     }
     
-    // Set source and security attributes
     iframe.src = src;
     iframe.allow = "autoplay; encrypted-media";
     iframe.referrerPolicy = "strict-origin-when-cross-origin";
     iframe.allowFullscreen = true;
 
-    // Add it to the grid
     container.appendChild(iframe);
   });
 </script>
