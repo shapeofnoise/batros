@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>4x4 Live Screensaver</title>
+<title>2x2 Live Screensaver</title>
 <style>
   /* Basic Reset */
   body, html { 
@@ -13,11 +13,11 @@
     background-color: #000; 
   }
 
-  /* The Grid Container */
+  /* The Grid Container configured for 2x2 */
   .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     width: 100vw;
     height: 100vh;
   }
@@ -38,17 +38,12 @@
 
 <script>
   // --- CONFIGURATION ---
-  // We now need 16 IDs for a full 4x4 grid.
+  // Array configured with 4 video IDs. Replace these with your chosen IDs.
   const videoIds = [
     "Mm_zVDDUeNA",  // batros!
     "Ziu0WsWAukE",  // puffin
-    "eAaBgV2kgro",  // swif
-    "cuFLl_r8jYE",  // roller
     "-qvYCbvbeN8",  // ospre
-    "-m_nQT62B4Y",  // kat
-    "AO5I5nNbbnE",  // stonks
-    "WBUBbFgiOJM",  // black oist
-    "pkOthyOKhXc"  // condor
+    "-m_nQT62B4Y"   // kat
   ];
 
   // --- LOGIC ---
@@ -60,10 +55,10 @@
 
     if (id.startsWith("UC")) {
         // CHANNEL LIVE STREAM
-        src = `https://www.youtube.com/embed/live_stream?channel=${id}&autoplay=1&mute=1&rel=0`;
+        src = `https://www.youtube.com/embed/live_stream?channel=${id}&autoplay=1&mute=1`;
     } else {
-        // SPECIFIC VIDEO LOOP
-        src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&rel=0`;
+        // SPECIFIC VIDEO LOOP (looping requires playlist parameter)
+        src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}`;
     }
     
     iframe.src = src;
@@ -77,3 +72,4 @@
 
 </body>
 </html>
+
